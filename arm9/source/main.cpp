@@ -14,11 +14,11 @@
 #include "headers.h"
 #include "utils.h"
 #include "menu.h"
-#include "inifile.h"
+#include "inihandler.h"
 #include "apppatch.h"
 
-CIniFile bootsrtapconfig;
-CIniFile bootstrap_template;
+IniFile bootsrtapconfig;
+IniFile bootstrap_template;
 
 PrintConsole upperScreen;
 PrintConsole lowerScreen;
@@ -203,11 +203,11 @@ void CreateForwarder() {
 		Movefile("sd:/MakeForwarder/banner.nds", folderpath + "/content/00000000.app");
 		Movefile("sd:/MakeForwarder/title.tmd", folderpath + "/content/title.tmd");
 		if(bootstrap_template.HasFileHandle()) {
-			bootsrtapconfig.SaveIniFile((folderpath + "/data/config.ini").c_str());
-			bootstrap_template.SetString("NDS-BOOTSTRAP", "NDS_PATH", file.c_str());
+			bootsrtapconfig.SaveFile(folderpath + "/data/config.ini");
+			bootstrap_template.SetValue("NDS-BOOTSTRAP", "NDS_PATH", file.c_str());
 			std::string savePath = ReplaceAll(file, ".nds", ".sav");
-			bootstrap_template.SetString("NDS-BOOTSTRAP", "SAV_PATH", savePath.c_str());
-			bootstrap_template.SaveIniFile((folderpath + "/data/bootstrap.ini").c_str());
+			bootstrap_template.SetValue("NDS-BOOTSTRAP", "SAV_PATH", savePath.c_str());
+			bootstrap_template.SaveFile(folderpath + "/data/bootstrap.ini");
 		}
 	}
 }
@@ -224,10 +224,10 @@ void SetBootstrap() {
 	std::string bootstrappath = file.substr(0, found + 1);
 	std::string bootstrapversion = file.substr(found + 1);
 
-	bootsrtapconfig.SetString("NDS-FORWARDER", "BOOTSTRAP_PATH", bootstrappath.c_str());
-	bootsrtapconfig.SetString("NDS-FORWARDER", "BOOTSTRAP_VERSION", bootstrapversion.c_str());
+	bootsrtapconfig.SetValue("NDS-FORWARDER", "BOOTSTRAP_PATH", bootstrappath.c_str());
+	bootsrtapconfig.SetValue("NDS-FORWARDER", "BOOTSTRAP_VERSION", bootstrapversion.c_str());
 
-	bootstrap_template.LoadIniFile((bootstrappath + "nds-bootstrap.ini").c_str());
+	bootstrap_template.LoadFile(bootstrappath + "nds-bootstrap.ini");
 }
 
 void CheckResources() {
