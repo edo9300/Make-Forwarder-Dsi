@@ -7,15 +7,15 @@
 #define DISPLAY_COLUMNS 32
 #define DISPLAY_ROWS 26
 
-class menu{
-	private:
+class menu {
+private:
 	std::vector<std::string> options;
 	int current;
-	public:
+public:
 	void AddOption(const std::string& option);
 	int DoMenu(PrintConsole* screen);
 	int GetLastSeletedOption();
-	
+
 };
 
 

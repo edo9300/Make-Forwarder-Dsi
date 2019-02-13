@@ -10,7 +10,7 @@ class CRC16 {
 	std::vector<uint16_t>crc16_tab;
 	uint16_t crc16_constant = 0xA001;
 	bool mdflag;
-	public:
+public:
 	CRC16(bool modbus_flag = false) {
 		// initialize the precalculated tables
 		if(crc16_tab.empty()) {
@@ -47,20 +47,23 @@ class CRC16 {
 
 int32_t GetBanerSize(uint16_t banner_type) {
 	switch(banner_type) {
-	case NDS_BANNER_VER_ZH: {
-		return NDS_BANNER_SIZE_ZH;
-		break;
-	}
-	case NDS_BANNER_VER_ZH_KO: {
-		return NDS_BANNER_SIZE_ZH_KO;
-		break;
-	}
-	case NDS_BANNER_VER_DSi: {
-		return NDS_BANNER_SIZE_DSi;
-		break;
-	}
-	default:
-		return NDS_BANNER_SIZE_ORIGINAL;
+		case NDS_BANNER_VER_ZH:
+		{
+			return NDS_BANNER_SIZE_ZH;
+			break;
+		}
+		case NDS_BANNER_VER_ZH_KO:
+		{
+			return NDS_BANNER_SIZE_ZH_KO;
+			break;
+		}
+		case NDS_BANNER_VER_DSi:
+		{
+			return NDS_BANNER_SIZE_DSi;
+			break;
+		}
+		default:
+			return NDS_BANNER_SIZE_ORIGINAL;
 	}
 }
 void ReplaceBanner(const std::string& target, const std::string& input, const std::string& output) {
@@ -230,7 +233,7 @@ int PathStringReplace(std::string path) {
 	if(!target.is_open())
 		return 255;
 	std::string str((std::istreambuf_iterator<char>(target)),
-		std::istreambuf_iterator<char>());
+					std::istreambuf_iterator<char>());
 	std::size_t found = str.find("sd:/kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
 	if(found == std::string::npos)
 		return 5;
@@ -238,4 +241,4 @@ int PathStringReplace(std::string path) {
 	target.write(&path[0], path.size());
 	target.put('\0');
 	return 0;
- }
+}

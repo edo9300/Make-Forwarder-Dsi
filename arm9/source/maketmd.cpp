@@ -65,7 +65,7 @@ void MakeTmd(const std::string& target, const std::string& destination) {
 
 	// Phase 4 - offset 0x1AA (fill-in 0x80 value, 0x10 times)
 	{
-		for(size_t i = 0; i<0x10; i++) {
+		for(size_t i = 0; i < 0x10; i++) {
 			tmd[0x1AA + i] = 0x80;
 		}
 	}
