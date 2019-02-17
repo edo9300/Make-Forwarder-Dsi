@@ -16,37 +16,12 @@
 	along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef _BETTER_INIFILE_H_
-#define _BETTER_INIFILE_H_
+#ifndef _INIHANDLER_H_
+#define _INIHANDLER_H_
 #include <string>
 #include <map>
-#include <functional>
 
-class IniObj {
-public:
-	IniObj(){};
-	void Set(const std::string& _key, const std::string& _val) {
-		val[_key] = _val;
-	}
-	void Set(const std::string& _key, int _val) {
-		val[_key] = std::to_string(_val);
-	}
-	std::string GetValString(const std::string& _key) {
-		if(val.find(_key) != val.end())
-			return val[_key];
-		return "";
-	}
-	int GetValInt(const std::string& _key) {
-		if(val.find(_key) != val.end())
-			return std::stoi(val[_key]);
-		return 0;
-	}
-	std::map<std::string, std::string>& GetHandle() {
-		return std::ref(val);
-	}
-private:
-	std::map<std::string /*key*/, std::string /*val*/> val;
-};
+typedef std::map<std::string/*field*/, std::map<std::string /*key*/, std::string /*val*/>>::iterator ini_map;
 
 class IniFile {
 public:
@@ -68,8 +43,14 @@ public:
 	bool HasFileHandle() {
 		return is_from_file;
 	};
+	ini_map::iterator begin() {
+		return contents.begin();
+	};
+	ini_map::iterator end() {
+		return contents.end();
+	};
 private:
-	std::map<std::string/*field*/, IniObj> contents;
+	ini_map contents;
 	std::string cur_filename;
 	bool is_from_file;
 	bool modified;

@@ -17,11 +17,23 @@
 */
 
 #include "inihandler.h"
-#include <fstream>
+#include <cstdio>
+
+static bool fgetline(FILE* f, std::string& str) {
+	str.clear();
+	char p = 0;
+	size_t read = 0;
+	while((read = fread(&p, 1, 1, f))) {
+		if(p == '\n' || p == '\r')
+			break;
+		str += p;
+	}
+	return !!read;
+}
 
 bool IniFile::LoadFile(const std::string & filename) {
-	std::ifstream inifile(filename, std::ifstream::in);
-	if(!inifile.is_open())
+	FILE* f = fopen(filename.c_str(), "rb");
+	if(!f)
 		return false;
 	is_from_file = true;
 	cur_filename = filename;
@@ -41,11 +53,10 @@ bool IniFile::LoadFile(const std::string & filename) {
 		return str;
 
 	};
-	while(std::getline(inifile, cur_str)) {
-		auto pos = cur_str.find_first_of("\n\r");
-		if(cur_str.size() && pos != std::string::npos)
-			cur_str = cur_str.substr(0, pos);
-		pos = cur_str.find('[');
+	while(fgetline(f, cur_str)) {
+		if(cur_str.empty())
+			continue;
+		auto pos = cur_str.find('[');
 		if(pos != std::string::npos) {
 			auto endpos = cur_str.find(']');
 			cur_field = cur_str.substr(pos + 1, endpos - pos - 1);
@@ -58,40 +69,42 @@ bool IniFile::LoadFile(const std::string & filename) {
 			continue;
 		auto key = remove_trailing_space(cur_str.substr(0, pos));
 		auto val = remove_leading_space(cur_str.substr(pos + 1, cur_str.size() - pos));
-		contents[cur_field].Set(key, val);
+		contents[cur_field][key] = val;
 	}
+	fclose(f);
 	return true;
 }
 
 bool IniFile::SaveFile(const std::string & filename) {
 	if(filename != "")
 		cur_filename = filename;
-	std::ofstream inifile(cur_filename, std::ofstream::out);
-	if(!inifile.is_open())
+	FILE* inifile = fopen(filename.c_str(), "wb");
+	if(!inifile)
 		return false;
 	modified = false;
 	for(auto& content : contents) {
-		inifile << "[" << content.first << "]\n";
-		for(auto& obj : content.second.GetHandle()) {
-			inifile << obj.first << " = " << obj.second << "\n";
+		fprintf(inifile, "[%s]\n", content.first.c_str());
+		for(auto& obj : content.second) {
+			fprintf(inifile, "%s = %s\n", obj.first.c_str(), obj.second.c_str());
 		}
 	}
+	fclose(inifile);
 	return true;
 }
 
 void IniFile::SetValue(const std::string& field, const std::string& key, const std::string& _val) {
 	modified = true;
-	contents[field].Set(key, _val);
+	contents[field][key] = _val;
 }
 
 std::string IniFile::GetValueString(const std::string & field, const std::string & key, const std::string & _default) {
 	if(contents.find(field) != contents.end())
-		return contents[field].GetValString(key);
+		return contents[field][key];
 	return _default;
 }
 
 int IniFile::GetValueInt(const std::string & field, const std::string & key, int _default) {
 	if(contents.find(field) != contents.end())
-		return contents[field].GetValInt(key);
+		return std::stoi(contents[field][key]);
 	return _default;
 }
