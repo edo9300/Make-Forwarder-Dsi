@@ -85,13 +85,13 @@ void IniFile::SetValue(const std::string& field, const std::string& key, const s
 }
 
 std::string IniFile::GetValueString(const std::string & field, const std::string & key, const std::string & _default) {
-	if(contents.find(key) != contents.end())
+	if(contents.find(field) != contents.end())
 		return contents[field].GetValString(key);
 	return _default;
 }
 
 int IniFile::GetValueInt(const std::string & field, const std::string & key, int _default) {
-	if(contents.find(key) != contents.end())
+	if(contents.find(field) != contents.end())
 		return contents[field].GetValInt(key);
 	return _default;
 }
