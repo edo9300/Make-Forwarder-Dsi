@@ -21,7 +21,7 @@
 #include <string>
 #include <map>
 
-typedef std::map<std::string/*field*/, std::map<std::string /*key*/, std::string /*val*/>>::iterator ini_map;
+typedef std::map<std::string/*field*/, std::map<std::string /*key*/, std::string /*val*/>> ini_map;
 
 class IniFile {
 public:
