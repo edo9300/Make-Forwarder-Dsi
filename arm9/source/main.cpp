@@ -9,6 +9,7 @@
 #include <vector>
 #include <unistd.h>
 #include <fat.h>
+#include <algorithm>
 
 #include "file_browse.h"
 #include "headers.h"
@@ -205,7 +206,10 @@ void CreateForwarder() {
 		if(bootstrap_template.HasFileHandle()) {
 			bootsrtapconfig.SaveFile(folderpath + "/data/config.ini");
 			bootstrap_template.SetValue("NDS-BOOTSTRAP", "NDS_PATH", file.c_str());
-			std::string savePath = ReplaceAll(file, ".nds", ".sav");
+			std::string save = file;
+			auto it = std::find(save.rbegin(), save.rend(), '/');
+			save.insert(save.rend() - it, "saves/");
+			std::string savePath = ReplaceAll(save, ".nds", ".sav");
 			bootstrap_template.SetValue("NDS-BOOTSTRAP", "SAV_PATH", savePath.c_str());
 			bootstrap_template.SaveFile(folderpath + "/data/bootstrap.ini");
 		}
