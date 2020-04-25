@@ -250,7 +250,7 @@ void CheckResources() {
 int main() {
 	displayInit();
 	consoleSetWindow(&upperScreen, 0, 0, DISPLAY_COLUMNS, 3);
-	WriteMessage("Forwarder maker by edo9300 v1.0", true, &upperScreen);
+	WriteMessage("Forwarder maker by edo9300 v1.1b", true, &upperScreen);
 	consoleSetWindow(&upperScreen, 0, 3, DISPLAY_COLUMNS, 23);
 	if(!fatInitDefault())
 		PrintError(1, true);
