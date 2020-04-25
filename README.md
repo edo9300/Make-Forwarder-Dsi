@@ -31,8 +31,8 @@ In newer versions of TWiLight Menu++, the save files are located in a seperate d
   - If you want to organize your stuff better, you can create a save folder inside the game folder or anywhere else on the console, but this will require more configuration later.
 
 ## Step 3. Downloading and Installing Make-Forwarder-Dsi
-1. Go to [this link](https://github.com/Ta180m/Make-Forwarder-Dsi/releases) and under "Assets", click on the one titled "MakeForwarder.zip" to download it
-2. Extract the files from the downloaded MakeForwarder.zip to a folder of your choosing
+1. Go to [this link](https://github.com/Ta180m/Make-Forwarder-Dsi/releases) and download `MakeForwarder.zip`
+2. Extract the files from the downloaded `MakeForwarder.zip` to a folder of your choosing
 3. Drag all the files to your SD card
 4. Eject the SD card and put it back inside your DSi
 
@@ -40,7 +40,7 @@ In newer versions of TWiLight Menu++, the save files are located in a seperate d
 1. Turn on your DSi and boot into HiyaCFW
 2. You should see a "present" on your home screen titled `Forwarder Maker`. Unwrap and open this.
 3. You should see a screen that says `Forwarder maker by edo9300`.
-4. Use the D-pad to navigate to "Set target bootstrap" and click A to select it.
+4. Use the D-pad to navigate to `Set target bootstrap` and click A to select it.
 5. Navigate to the folder called `_nds` and choose the file called `nds-bootstrap-nightly.nds`
 6. Now select `Create Forwarder`.
 7. Navigate to your games folder and select the ROM you would like to make a forwarder to, then click A.
@@ -48,14 +48,14 @@ In newer versions of TWiLight Menu++, the save files are located in a seperate d
 9. When you are done, restart the console and go back to HiyaCFW. You should see one present for each forwarder you created. Unwrap them.
 10. Open them and they should work. If they don't start or it won't read your save file, go back to HiyaCFW and open the app again, but keep A pressed after you open it up. This should show a menu allowing you to change the forwarder, ROM file, and save location. Configure these as necessary.
 
-## Step 5 (optional). Automatically Booting into HiyaCFW
+## Step 5 (optional) Automatically Booting into HiyaCFW
 If your DS always boots into Unlaunch, you can make it automatically boot into HiyaCFW (or TwilightMenu++ if you prefer). This is pretty easy to do.
 
 1. Boot into Unlaunch.
-2. Use the D-pad to select "OPTIONS" and hit A to click on it.
-3. Click on "NO BUTTON" and select the thing you'd like to open by default (probably HiyaCFW)
+2. Use the D-pad to select `OPTIONS` and hit A to click on it.
+3. Click on `NO BUTTON` and select the thing you'd like to open by default (probably HiyaCFW)
 4. You can also configure what happens when you boot while holding A, B, X, and Y (e.g. holding A can boot you into TwilightMenu)
-  - Holding A+B will always boot into Unlaunch, but I personally set holding just A to open up Unlaunch also (if you want to open Unlaunch, choose the item called "FILEMENU").
+  - Holding A+B will always boot into Unlaunch, but I personally set holding just A to open up Unlaunch also (if you want to open Unlaunch, choose the item called `FILEMENU`).
 
 ## Step 6. Final Remarks
 - You can add as many rom forwarders as you like (as long as you don't run out of space or use the maximum number of system menu slots).
