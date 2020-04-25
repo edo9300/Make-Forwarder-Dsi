@@ -18,7 +18,6 @@ In newer versions of TWiLight Menu++, the save files are located in a seperate d
   - [Unlaunch](https://problemkaputt.de/unlaunch.zip)
   - [HiyaCFW](https://github.com/mondul/HiyaCFW-Helper/releases) (and a 2 gigabyte SD card)
   - [TWiLightMenu++](https://github.com/DS-Homebrew/TWiLightMenu/releases) (this comes with the correct version of NDS-Bootstrap and properly configures it)
-    - You must have ran a game from within TwilightMenu++ at least once before creating save forwarders.
 - A computer
 - A way to read your DSi's SD card from your PC
 
@@ -34,11 +33,8 @@ In newer versions of TWiLight Menu++, the save files are located in a seperate d
 ## Step 3. Downloading and Installing Make-Forwarder-Dsi
 1. Go to [this link](https://github.com/Ta180m/Make-Forwarder-Dsi/releases) and under "Assets", click on the one titled "MakeForwarder.zip" to download it
 2. Extract the files from the downloaded MakeForwarder.zip to a folder of your choosing
-3. Open the extracted MakeForwarder folder, then navigate to the folder called "title". Copy the folder called "00030004" or something similar.
-4. Open up the SD card and navigate to the "title" folder. Paste the "00030004" folder inside the "title" folder on your SD card.
-5. Now, go back to the extracted MakeForwarder folder on your PC. Inside there should be another folder called "MakeForwarder". Go inside this and copy the file called "template.nds" (and any other files that may be there)
-6. Go to your SD card and in the root directory, create a folder called "MakeForwarder". Paste the "template.nds" file here.
-7. Eject the SD card and put it back inside your DSi
+3. Drag all the files to your SD card
+4. Eject the SD card and put it back inside your DSi
 
 ## Step 4. Configuring Forwarders
 1. Turn on your DSi and boot into HiyaCFW
@@ -66,3 +62,9 @@ If your DS always boots into Unlaunch, you can make it automatically boot into H
   - Remember - HiyaCFW only works on SD cards of 2 gigabytes or fewer.
 - Do not remove any of the MakeForwarder files you originally created. This will delete all of your forwarders (but the games and saves should still be there).
 - Happy playing!
+
+## Building from Source
+1. Install the [devkitARM toolchain](https://devkitpro.org/wiki/Getting_Started)
+2. Download or clone this repository
+3. Navigate to the folder and run `make -f Makefile`
+4. The build will produce a `Make-Forwarder-Dsi.nds` file which you can then install using [TMFH](https://github.com/JeffRuLz/TMFH)
