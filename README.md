@@ -3,11 +3,11 @@
 *Adapted from https://nmoleo.gitlab.io/guide-to-edo9300s-make-forwarder-dsi/*
 
 ## Step 0: The How and Why
-### Why should I use Make Forwarder?
-The simple answer is flexibility - it allows you to run NDS roms, DSiWare, and system titles, all from the same menu without going through Unlaunch. It is also a little faster to load and (in some people's opinions) looks nicer than TWiLight Menu++.
-
 ### How does it work?
-I'm not the author of the code, so I don't know exactly how it works, but the simple answer is that it uses the same NDS-Bootstrap application that TWiLight Menu++ uses, but registers the apps in the System Menu as DSiWare instead of using TWiLight Menu++ to access them.
+Make Forwarder creates DSiWare applications in the DSi home menu that launch preset NDS ROMs using the same NDS-Bootstrap application that TWiLight Menu++ uses.
+
+### Why should I use Make Forwarder?
+The simple answer is flexibility - it allows you to run NDS roms, DSiWare, and system titles, all from the same menu without going through Unlaunch or TWiLight Menu++. It is also a little faster to load and (in some people's opinions) looks nicer than TWiLight Menu++.
 
 ### What's this fork?
 In newer versions of TWiLight Menu++, the save files are located in a seperate directory `saves`, so this fork aims to maintain compatibility without further configuring.
@@ -31,7 +31,7 @@ In newer versions of TWiLight Menu++, the save files are located in a seperate d
   - If you want to organize your stuff better, you can create a save folder anywhere else on the SD card, but this will require more configuration later.
 
 ## Step 3. Downloading and Installing Make-Forwarder-Dsi
-1. Go to [this link](https://github.com/Ta180m/Make-Forwarder-Dsi/releases/latest) and download `MakeForwarder.zip`.
+1. Go to the [latest release](https://github.com/Ta180m/Make-Forwarder-Dsi/releases/latest) and download `MakeForwarder.zip`.
 2. Extract the files from the downloaded `MakeForwarder.zip` to a folder of your choosing.
 3. Drag all the files to your SD card.
 4. Eject the SD card and put it back inside your DSi.
@@ -58,9 +58,9 @@ If your DS always boots into Unlaunch, you can make it automatically boot into H
   - Holding A+B will always boot into Unlaunch. If you want to open Unlaunch, choose the item called `FILEMENU`.
 
 ## Step 6. Final Remarks
-- You can add as many rom forwarders as you like (as long as you don't run out of space or use the maximum number of system menu slots).
+- You can add as many ROM forwarders as you like (as long as you don't run out of space or use the maximum number of system menu slots).
   - Remember - HiyaCFW only works on SD cards of 2 gigabytes or fewer.
-- Do not remove any of the MakeForwarder files you originally created. This will delete all of your forwarders (but the games and saves should still be there).
+- Do not remove any of the MakeForwarder files on your SD card. This will delete all of your forwarders (but the games and saves should still be there).
 - Happy playing!
 
 ## Building from Source and Manual Installation
