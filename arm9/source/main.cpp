@@ -9,6 +9,7 @@
 #include <vector>
 #include <unistd.h>
 #include <fat.h>
+#include <algorithm>
 
 #include "file_browse.h"
 #include "headers.h"
@@ -205,7 +206,10 @@ void CreateForwarder() {
 		if(bootstrap_template.HasFileHandle()) {
 			bootsrtapconfig.SaveFile(folderpath + "/data/config.ini");
 			bootstrap_template.SetValue("NDS-BOOTSTRAP", "NDS_PATH", file.c_str());
-			std::string savePath = ReplaceAll(file, ".nds", ".sav");
+			std::string save = file;
+			auto it = std::find(save.rbegin(), save.rend(), '/');
+			save.insert(save.rend() - it, "saves/");
+			std::string savePath = ReplaceAll(save, ".nds", ".sav");
 			bootstrap_template.SetValue("NDS-BOOTSTRAP", "SAV_PATH", savePath.c_str());
 			bootstrap_template.SaveFile(folderpath + "/data/bootstrap.ini");
 		}
@@ -246,7 +250,7 @@ void CheckResources() {
 int main() {
 	displayInit();
 	consoleSetWindow(&upperScreen, 0, 0, DISPLAY_COLUMNS, 3);
-	WriteMessage("Forwarder maker by edo9300 v1.0", true, &upperScreen);
+	WriteMessage("Forwarder maker by edo9300 v1.1b", true, &upperScreen);
 	consoleSetWindow(&upperScreen, 0, 3, DISPLAY_COLUMNS, 23);
 	if(!fatInitDefault())
 		PrintError(1, true);
