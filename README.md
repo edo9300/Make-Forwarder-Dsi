@@ -16,7 +16,7 @@ In newer versions of TWiLight Menu++, the save files are located in a seperate d
 ### What You Need
 - A homebrewed* Nintendo DSi or DSi XL with the latest releases of ...
   - [Unlaunch](https://problemkaputt.de/unlaunch.zip)
-  - [HiyaCFW](https://github.com/mondul/HiyaCFW-Helper/releases) (and a 2 gigabyte SD card)
+  - [HiyaCFW](https://github.com/mondul/HiyaCFW-Helper/releases)
   - [TWiLightMenu++](https://github.com/DS-Homebrew/TWiLightMenu/releases) (this comes with the correct version of NDS-Bootstrap and properly configures it)
 - A computer
 - A way to read your DSi's SD card from your PC
