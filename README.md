@@ -32,9 +32,10 @@ In newer versions of TWiLight Menu++, the save files are located in a seperate d
 
 ## Step 3. Downloading and Installing Make-Forwarder-Dsi
 1. Go to the [latest release](https://github.com/Ta180m/Make-Forwarder-Dsi/releases/latest) and download `MakeForwarder.zip`.
-2. Extract the files from the downloaded `MakeForwarder.zip` to a folder of your choosing.
-3. Drag all the files to your SD card.
-4. Eject the SD card and put it back inside your DSi.
+  - If you want a bleeding edge version of Make Forwarder, I recommend compiling this repository yourself with [devkitPro](https://devkitpro.org/).
+3. Extract the files from the downloaded `MakeForwarder.zip` to a folder of your choosing.
+4. Drag all the files to your SD card.
+5. Eject the SD card and put it back inside your DSi.
 
 ## Step 4. Configuring Forwarders
 1. Turn on your DSi and boot into HiyaCFW.
