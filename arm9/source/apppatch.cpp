@@ -66,7 +66,7 @@ int32_t GetBanerSize(uint16_t banner_type) {
 			return NDS_BANNER_SIZE_ORIGINAL;
 	}
 }
-void ReplaceBanner(const std::string& target, const std::string& input, const std::string& output) {
+void ReplaceBanner(const std::string& target, const std::string& input, const std::string& output, const std::string& gameidhex) {
 	std::string destination = target;
 	std::ifstream infile(input, std::ifstream::binary);
 	if(!output.empty()) {
@@ -135,7 +135,7 @@ void ReplaceBanner(const std::string& target, const std::string& input, const st
 	tsrlheader.gamecode[0] = isrlheader.gamecode[0];
 	tsrlheader.gamecode[1] = isrlheader.gamecode[1];
 	tsrlheader.gamecode[2] = isrlheader.gamecode[2];
-	tsrlheader.gamecode[3] = isrlheader.gamecode[3];
+	tsrlheader.gamecode[3] = stoi(gameidhex.substr(6, 2), 0, 16);
 	ttwlheader.tid_low = tsrlheader.gamecode[3] | (tsrlheader.gamecode[2] << 8) | (tsrlheader.gamecode[1] << 16) | (tsrlheader.gamecode[0] << 24);
 	trfile.seekg(0, trfile.beg);
 	trfile.write((char*)&tsrlheader, sizeof(tsrlheader));

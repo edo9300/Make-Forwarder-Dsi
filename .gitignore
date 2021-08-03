@@ -1,0 +1,9 @@
+*~
+*.exe
+*.o
+test
+*.zip
+build
+*.elf
+*.nds
+test.*
