@@ -73,7 +73,10 @@ void WriteMessage(std::string text, bool clear = false, PrintConsole* screen = n
 	}
 }
 
+menu savefilemenu;
 menu yesno;
+
+std::string saveformat = ".sav";
 
 void displayInit() {
 	lowerScreen = *consoleDemoInit();
@@ -172,6 +175,9 @@ void CreateForwarder() {
 		PrintError(5);
 		return;
 	}
+	if (saveformat != ".sav") {
+		gameidhex = gameidhex.replace(6, 2, string_to_hex(saveformat.substr(4, 1)));
+	}
 	std::string folderpath("sd:/title/00030004/" + gameidhex);
 
 	if(fileExists(folderpath + "/content/00000000.app")) {
@@ -185,7 +191,7 @@ void CreateForwarder() {
 
 	WriteMessage("Creating forwarder", true, &lowerScreen);
 
-	ReplaceBanner("sd:/MakeForwarder/template.nds", file, "sd:/MakeForwarder/banner.nds");
+	ReplaceBanner("sd:/MakeForwarder/template.nds", file, "sd:/MakeForwarder/banner.nds", gameidhex);
 
 	Patch("sd:/MakeForwarder/banner.nds", false);
 
@@ -209,7 +215,7 @@ void CreateForwarder() {
 			std::string save = file;
 			auto it = std::find(save.rbegin(), save.rend(), '/');
 			save.insert(save.rend() - it, "saves/");
-			std::string savePath = ReplaceAll(save, ".nds", ".sav");
+			std::string savePath = ReplaceAll(save, ".nds", saveformat);
 			bootstrap_template.SetValue("NDS-BOOTSTRAP", "SAV_PATH", savePath.c_str());
 			bootstrap_template.SaveFile(folderpath + "/data/bootstrap.ini");
 		}
@@ -247,6 +253,16 @@ void CheckResources() {
 		PrintError(4, true);
 }
 
+void SetSavefile() {
+	WriteMessage("Select your target save file", true, &upperScreen);
+	int ret = savefilemenu.DoMenu(&lowerScreen);
+	if(ret != 0) {
+		saveformat = ".sav" + std::to_string(ret);
+	}
+	consoleSelect(&upperScreen);
+	consoleClear();
+}
+
 int main() {
 	displayInit();
 	consoleSetWindow(&upperScreen, 0, 0, DISPLAY_COLUMNS, 3);
@@ -258,6 +274,17 @@ int main() {
 	menu mainmenu;
 	mainmenu.AddOption("Create Forwarder");
 	mainmenu.AddOption("Set target bootstrap");
+	mainmenu.AddOption("Select target save file");
+	savefilemenu.AddOption("Default Save file (.sav)");
+	savefilemenu.AddOption("Save file 1 (.sav1)");
+	savefilemenu.AddOption("Save file 2 (.sav2)");
+	savefilemenu.AddOption("Save file 3 (.sav3)");
+	savefilemenu.AddOption("Save file 4 (.sav4)");
+	savefilemenu.AddOption("Save file 5 (.sav5)");
+	savefilemenu.AddOption("Save file 6 (.sav6)");
+	savefilemenu.AddOption("Save file 7 (.sav7)");
+	savefilemenu.AddOption("Save file 8 (.sav8)");
+	savefilemenu.AddOption("Save file 9 (.sav9)");
 	yesno.AddOption("Yes");
 	yesno.AddOption("No");
 	while(true) {
@@ -268,6 +295,9 @@ int main() {
 			CreateForwarder();
 		else if(ret == 1)
 			SetBootstrap();
+		else if(ret == 2) {
+			SetSavefile();
+		}
 		else
 			break;
 	}

@@ -3,7 +3,7 @@
 
 #include <string>
 
-void ReplaceBanner(const std::string& target, const std::string& input, const std::string& output);
+void ReplaceBanner(const std::string& target, const std::string& input, const std::string& output, const std::string& gamehexid);
 void Patch(const std::string& name, bool backup);
 void MakeTmd(const std::string& target, const std::string& destination = "");
 int PathStringReplace(std::string path);
